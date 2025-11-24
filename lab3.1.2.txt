@@ -1,0 +1,41 @@
+            INCLUDE 'derivative.inc'
+
+
+; export symbols
+            XDEF Entry
+            ;, _Startup, main
+            ; we use export 'Entry' as symbol. This allows us to
+            ; reference 'Entry' either in the linker .prm file
+            ; or from C/C++ later on
+
+            XREF __SEG_END_SSTACK      ; symbol defined by the linker for the end of the stack
+
+My_Variable: 	section 
+val: dc.b $0, $A, $4B, $C8, $FF 
+
+
+line: macro
+
+  ldaa \1    ; load x into A  and B
+  ldab \1
+  mul        ; load x*x into D
+  ldx #25    ; load 25 into X
+  idiv       ; load x*x/25 into X
+  tfr x,d    ; transer result back to D
+  ldy #17    ; load 17 into Y
+  emul       ; load 17 * x * x into D 
+  addd #12   ; add b (#12) to D for final answer
+  endm
+  
+; code section
+My_Code:     SECTION
+;main:
+;_Startup:
+Entry:
+	    	; pass each value to the equation and solve  
+	    	line val
+	    	line val+1
+	    	line val+2
+	      line val+3
+	    	line val+4 ; send each value to the macro
+		nop

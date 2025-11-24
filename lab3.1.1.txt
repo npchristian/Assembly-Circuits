@@ -1,0 +1,53 @@
+;**************************************************************
+;* This stationery serves as the framework for a              *
+;* user application. For a more comprehensive program that    *
+;* demonstrates the more advanced functionality of this       *
+;* processor, please see the demonstration applications       *
+;* located in the examples subdirectory of the                *
+;* Freescale CodeWarrior for the HC12 Program directory       *
+;**************************************************************
+
+;  
+;Objective:
+;	Learn different addressing modes and assembler directives in a given program.
+
+
+
+; Include derivative-specific definitions
+            INCLUDE 'derivative.inc'
+
+
+; export symbols
+            XDEF Entry
+            ;, _Startup, main
+            ; we use export 'Entry' as symbol. This allows us to
+            ; reference 'Entry' either in the linker .prm file
+            ; or from C/C++ later on
+
+            XREF __SEG_END_SSTACK      ; symbol defined by the linker for the end of the stack
+
+My_Variable: 	section 
+val: dc.b $0, $A, $4B, $C8, $FF 
+
+
+line: macro
+  ldaa \1    ; load x into A
+  ldab #68   ; load 68 into B
+  mul        ; load mx into D
+  ldx #100   ; load #100 into X
+  idiv       ; approximate .68*x and load into X
+  tfr x,a    ; transfer this value back to A
+  adda #12   ; add b (#12) to A
+  endm
+  
+; code section
+My_Code:     SECTION
+;main:
+;_Startup:
+Entry:
+	    	; pass each value to the equation and solve  
+	    	line val
+	    	line val+1
+	    	line val+2
+	    	line val+3
+	    	line val+4 ; call the macro and send each value
