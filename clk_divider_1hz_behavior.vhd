@@ -21,7 +21,7 @@ end clk_divider_1hz_behavior;
 
 Architecture behavior of clk_divider_1hz_behavior Is
 	
-	Constant terminal_count : STD_LOGIC_VECTOR(22 downto 0) := "00000111101000010010000"; --I divided the original number by 10?
+	Constant terminal_count : STD_LOGIC_VECTOR(22 downto 0) := "01001100010010110100000"; -- X"2625A0"
 	Signal count : STD_LOGIC_VECTOR(22 downto 0) := "00000000000000000000000";
 	Signal count_done : STD_LOGIC := '0';
 	Signal q_int : STD_LOGIC := '0';

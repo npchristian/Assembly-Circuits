@@ -11,6 +11,7 @@ use UNISIM.VComponents.all;
 Entity bcdto7segment_dataflow Is
 port(
 		x 	: in STD_LOGIC_VECTOR(3 downto 0);
+		an 	: out STD_LOGIC_VECTOR(3 downto 0);
 		seg : out STD_LOGIC_VECTOR(6 downto 0)
 	);
 end bcdto7segment_dataflow;

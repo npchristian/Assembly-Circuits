@@ -79,7 +79,7 @@ begin
 		 );	
 		 
 	U6:  mux_2_to_1_behavior PORT MAP (
-			x => v(0),	
+			x => v(0),
 			y => v_out(0),
 			s => z_int,
 			m => m_out(0)
