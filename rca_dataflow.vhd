@@ -4,6 +4,9 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
 
 library UNISIM;
 use UNISIM.VComponents.all;
@@ -19,51 +22,14 @@ port(
 end rca_dataflow;
 
 Architecture behavior of rca_dataflow Is
-	Component fulladder_dataflow
-	port (
-		a  	 : in STD_LOGIC;
-		b  	 : in STD_LOGIC;
-		cin  : in STD_LOGIC;
-		s 	 : out STD_LOGIC;
-		cout : out STD_LOGIC
-	);	
-	End Component;
-
-signal cout_i : STD_LOGIC_VECTOR (3 downto 0);
+	
+signal cin_int : std_logic_vector(3 downto 0);
+signal sum:std_logic_vector(4 downto 0);
 
 begin
-	F0:  fulladder_dataflow PORT MAP (
-			a => a(0),
-			b => b(0),
-			cin => cin,
-			s => s(0),
-			cout => cout_i(0)
-		 );
-
-	F1:  fulladder_dataflow PORT MAP (
-			a => a(1),
-			b => b(1),
-			cin => c(1),
-			s => s(1),
-			cout => cout_i(1)
-		 );
-
-	F2:  fulladder_dataflow PORT MAP (
-			a => a(2),
-			b => b(2),
-			cin => c(2),
-			s => s(2),
-			cout => cout_i(2)
-		 );
-		 
-	F3:  fulladder_dataflow PORT MAP (
-			a => a(3),
-			b => b(3),
-			cin => c(3),
-			s => s(3),f
-			cout => cout_i(3)
-		 );		 
-		 
-	cout <= cout_i(3);
+	cin_int<= "000" & cin;
+	sum<=(('0' & a)+('0' & b) + (cin_int));
+	s<= sum(3 downto 0);
+	cout<= sum(4); 
 
 end behavior;
