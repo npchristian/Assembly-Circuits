@@ -43,7 +43,7 @@ begin
 	F1:  fulladder_dataflow PORT MAP (
 			a => a(1),
 			b => b(1),
-			cin => cout_i(0),
+			cin => c(1),
 			s => s(1),
 			cout => cout_i(1)
 		 );
@@ -51,7 +51,7 @@ begin
 	F2:  fulladder_dataflow PORT MAP (
 			a => a(2),
 			b => b(2),
-			cin => cout_i(1),
+			cin => c(2),
 			s => s(2),
 			cout => cout_i(2)
 		 );
@@ -59,8 +59,8 @@ begin
 	F3:  fulladder_dataflow PORT MAP (
 			a => a(3),
 			b => b(3),
-			cin => cout_i(2),
-			s => s(3),
+			cin => c(3),
+			s => s(3),f
 			cout => cout_i(3)
 		 );		 
 		 
